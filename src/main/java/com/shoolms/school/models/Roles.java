@@ -1,9 +1,8 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -19,5 +18,5 @@ public class Roles extends AbstractEntity{
     private String roleName;
     @ManyToOne
     @JoinColumn(name = "idutilisateur")
-    private Utilisateur utilisateur;
+    private User utilisateur;
 }

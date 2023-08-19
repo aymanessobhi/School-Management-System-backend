@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;

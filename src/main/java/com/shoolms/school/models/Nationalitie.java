@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,10 +12,9 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="grade")
-public class Grade implements Serializable {
+@Table(name="nationalities")
+public class Nationalitie implements Serializable {
     @Id
     private Long id;
-    private String name_grade;
-    private String notes;
+    private String name;
 }

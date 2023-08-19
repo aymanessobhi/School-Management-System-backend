@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,19 +11,12 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="sections")
-public class Section implements Serializable {
+@Table(name="classroom")
+public class Classroom implements Serializable {
     @Id
     private Long id;
-    private String name_section;
+    private String nameClass;
     @ManyToOne
     @JoinColumn(name="grade_id")
     private Grade grade;
-    @ManyToOne
-    @JoinColumn(name="class_id")
-    private Classroom myClass;
-
-//    @ManyToMany(mappedBy = "sections")
-//    private List<Teacher> teachers;
-
 }

@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import com.shoolms.school.enums.AttendanceStatus;
 import jakarta.persistence.*;
@@ -18,8 +18,8 @@ public class Attendance implements Serializable {
 
     @Id
     private Long id;
-    private Date attendance_date;
-    private AttendanceStatus attendance_status;
+    private Date attendanceDate;
+    private AttendanceStatus attendanceStatus;
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;

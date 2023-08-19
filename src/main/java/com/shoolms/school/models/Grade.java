@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,14 +7,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="gender")
-public class Gender {
+@Table(name="grade")
+public class Grade implements Serializable {
     @Id
     private Long id;
-    private String name_gender;
-
+    private String nameGrade;
+    private String notes;
 }

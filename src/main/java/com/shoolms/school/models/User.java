@@ -1,4 +1,4 @@
-package com.shoolms.school.entites;
+package com.shoolms.school.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -14,8 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur extends AbstractEntity{
-
+public class User extends AbstractEntity  {
+    @Id
+    private Long id;
     @Column(name = "nom")
     private String nom;
 
