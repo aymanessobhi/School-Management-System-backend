@@ -9,7 +9,7 @@ public interface ClassroomService {
     List<Classroom> getAllClassrooms();
     Optional<Classroom> getClassroomById(Long id);
     Classroom saveClassroom(Classroom classroom);
-
+    List<Classroom> findByGrade(Long GradeId);
     Classroom updateClassroom(Long id, Classroom updatedClassroom);
 
     void deleteClassroom(Long id);

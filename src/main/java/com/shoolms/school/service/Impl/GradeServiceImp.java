@@ -3,6 +3,7 @@ package com.shoolms.school.service.Impl;
 import com.shoolms.school.models.Grade;
 import com.shoolms.school.repository.GradeRepository;
 import com.shoolms.school.service.GradeService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,7 @@ public class GradeServiceImp implements GradeService {
         return gradeRepository.save(grade);
     }
 
+    @Transactional
     @Override
     public void deleteGrade(Long id) {
         gradeRepository.deleteById(id);

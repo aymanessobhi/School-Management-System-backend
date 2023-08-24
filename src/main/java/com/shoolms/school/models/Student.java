@@ -1,5 +1,6 @@
 package com.shoolms.school.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="students")
-public class Student implements Serializable {
+public class Student{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @Column(nullable = false, unique = true)
@@ -49,7 +51,7 @@ public class Student implements Serializable {
 //    @ManyToOne
 //    @JoinColumn(name="parent_id")
 //    private MyParent parent;
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student")
     private List<Attendance> attendanceList;
 
 }

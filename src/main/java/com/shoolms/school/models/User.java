@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "utilisateur")
-public class User extends AbstractEntity  {
+public class User{
     @Id
     private Long id;
     @Column(name = "nom")

@@ -1,5 +1,6 @@
 package com.shoolms.school.models;
 
+import com.shoolms.school.enums.SectionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +13,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="sections")
-public class Section implements Serializable {
+public class Section {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name_section;
     @ManyToOne
@@ -22,6 +25,9 @@ public class Section implements Serializable {
     @ManyToOne
     @JoinColumn(name="class_id")
     private Classroom myClass;
+
+    @Enumerated(EnumType.STRING)
+    private SectionStatus status;
 
 //    @ManyToMany(mappedBy = "sections")
 //    private List<Teacher> teachers;

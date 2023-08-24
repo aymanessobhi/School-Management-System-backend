@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Promotion implements Serializable {
+public class Promotion{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     @ManyToOne
     @JoinColumn(name = "student_id")

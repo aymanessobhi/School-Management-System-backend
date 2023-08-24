@@ -14,9 +14,10 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="attendance")
-public class Attendance implements Serializable {
+public class Attendance{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date attendanceDate;
     private AttendanceStatus attendanceStatus;

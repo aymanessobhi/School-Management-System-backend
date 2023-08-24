@@ -39,7 +39,7 @@ public class NationalitieServiceImp implements NationalitieService {
         Optional<Nationalitie> existingNationalitie = nationalitieRepository.findById(id);
         if (existingNationalitie.isPresent()) {
             Nationalitie nationalitie = existingNationalitie.get();
-            nationalitie.setName(updatedNationalitie.getName());
+            nationalitie.setNameNationalitie(updatedNationalitie.getNameNationalitie());
             return nationalitieRepository.save(nationalitie);
         } else {
             return null;

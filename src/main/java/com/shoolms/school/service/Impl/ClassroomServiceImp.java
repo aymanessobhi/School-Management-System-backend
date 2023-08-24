@@ -34,12 +34,18 @@ public class ClassroomServiceImp implements ClassroomService {
     public Classroom saveClassroom(Classroom classroom) {
         return classroomRepository.save(classroom);
     }
+
+    @Override
+    public List<Classroom> findByGrade(Long gradeId) {
+        return classroomRepository.findClassroomByGradeId(gradeId);
+    }
+
     @Override
     public Classroom updateClassroom(Long id, Classroom updatedClassroom) {
         Optional<Classroom> existingClassroom = classroomRepository.findById(id);
         if (existingClassroom.isPresent()) {
             Classroom classroom = existingClassroom.get();
-            classroom.setNameClass(updatedClassroom.getNameClass());
+            classroom.setNameOfClass(updatedClassroom.getNameOfClass());
             return classroomRepository.save(classroom);
         } else {
             // Handle not found scenario

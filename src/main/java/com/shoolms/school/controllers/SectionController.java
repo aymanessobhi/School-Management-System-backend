@@ -9,23 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sections")
+@CrossOrigin
 public class SectionController {
-
     private final SectionService sectionService;
-
     @Autowired
     public SectionController(SectionService sectionService) {
         this.sectionService = sectionService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/api/sections")
     public ResponseEntity<List<Section>> getAllSections() {
         List<Section> sections = sectionService.getAllSections();
         return ResponseEntity.ok(sections);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/api/sections/{id}")
     public ResponseEntity<Section> updateSection(@PathVariable Long id, @RequestBody Section updatedSection) {
         Section updated = sectionService.updateSection(id, updatedSection);
         if (updated != null) {
@@ -35,20 +33,20 @@ public class SectionController {
         }
     }
 
-    @GetMapping("/{section-id}")
+    @GetMapping("/api/sections/{section-id}")
     public ResponseEntity<Section> getSectionById(@PathVariable Long id) {
         return sectionService.getSectionById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/")
+    @PostMapping("/api/sections")
     public ResponseEntity<Section> saveSection(@RequestBody Section section) {
         Section savedSection = sectionService.saveSection(section);
         return ResponseEntity.ok(savedSection);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/sections/{id}")
     public ResponseEntity<Void> deleteSection(@PathVariable Long id) {
         sectionService.deleteSection(id);
         return ResponseEntity.noContent().build();
