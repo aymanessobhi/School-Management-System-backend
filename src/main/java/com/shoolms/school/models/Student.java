@@ -25,23 +25,23 @@ public class Student{
 
     @Column(name = "Date_Birth")
     private LocalDate dateOfBirth;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="gender_id")
     private Gender gender;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="Grade_id")
     private Grade grade;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="classroom_id")
     private Classroom myClass;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="section_id")
     private Section section;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="nationalitie_id")
     private Nationalitie nationalitie;
 
@@ -51,7 +51,7 @@ public class Student{
 //    @ManyToOne
 //    @JoinColumn(name="parent_id")
 //    private MyParent parent;
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Attendance> attendanceList;
 
 }

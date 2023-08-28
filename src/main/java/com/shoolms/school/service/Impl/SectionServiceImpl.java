@@ -6,6 +6,7 @@ import com.shoolms.school.service.SectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,10 +33,12 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
+    @Transactional
     public Section saveSection(Section section) {
         return sectionRepository.save(section);
     }
     @Override
+    @Transactional
     public Section updateSection(Long id, Section updatedSection) {
         Optional<Section> existingSection = sectionRepository.findById(id);
         if (existingSection.isPresent()) {
@@ -49,6 +52,11 @@ public class SectionServiceImpl implements SectionService {
             // Handle not found scenario
             return null;
         }
+    }
+
+    @Override
+    public List<Section> findByGrade(Long gradeId) {
+        return sectionRepository.findSectionByGradeId(gradeId);
     }
 
     @Override

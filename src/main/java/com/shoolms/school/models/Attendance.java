@@ -21,17 +21,17 @@ public class Attendance{
     private Long id;
     private Date attendanceDate;
     private AttendanceStatus attendanceStatus;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="grade_id")
     private Grade grade;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "classroom_id")
     private  Classroom myClass;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "section_id")
     private Section section;
 

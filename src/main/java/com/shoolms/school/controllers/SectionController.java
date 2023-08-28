@@ -39,7 +39,10 @@ public class SectionController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    @GetMapping("/api/sections/grade={id}")
+    public ResponseEntity<List<Section>> getAllSectionByGradeId(@PathVariable Long id) {
+      return ResponseEntity.ok(sectionService.findByGrade(id));
+    }
     @PostMapping("/api/sections")
     public ResponseEntity<Section> saveSection(@RequestBody Section section) {
         Section savedSection = sectionService.saveSection(section);

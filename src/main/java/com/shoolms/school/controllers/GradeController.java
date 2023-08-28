@@ -2,8 +2,10 @@ package com.shoolms.school.controllers;
 
 import com.shoolms.school.models.Classroom;
 import com.shoolms.school.models.Grade;
+import com.shoolms.school.models.Section;
 import com.shoolms.school.service.ClassroomService;
 import com.shoolms.school.service.GradeService;
+import com.shoolms.school.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +18,14 @@ public class GradeController {
 
     private final GradeService gradeService;
     private final ClassroomService classroomService;
+    private final SectionService sectionService;
 
     @Autowired
-    public GradeController(GradeService gradeService, ClassroomService classroomService)
+    public GradeController(GradeService gradeService, ClassroomService classroomService, SectionService sectionService)
     {
         this.gradeService = gradeService;
         this.classroomService = classroomService;
+        this.sectionService = sectionService;
     }
 
     @GetMapping("/api/grades")
@@ -40,7 +44,6 @@ public class GradeController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @PostMapping("/api/grades")
     public ResponseEntity<Grade> saveGrade(@RequestBody Grade grade) {
         Grade savedGrade = gradeService.saveGrade(grade);

@@ -10,5 +10,6 @@ public interface SectionService {
     Optional<Section> getSectionById(Long id);
     Section saveSection(Section section);
     Section updateSection(Long id, Section updatedSection);
+    List<Section> findByGrade(Long gradeId);
     void deleteSection(Long id);
 }

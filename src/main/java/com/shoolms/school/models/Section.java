@@ -1,5 +1,6 @@
 package com.shoolms.school.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shoolms.school.enums.SectionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,11 @@ public class Section {
 
     private Long id;
     private String name_section;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="grade_id")
     private Grade grade;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="class_id")
     private Classroom myClass;
 
