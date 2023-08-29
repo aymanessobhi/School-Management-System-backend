@@ -64,7 +64,7 @@ public class ClassroomServiceImp implements ClassroomService {
         if (existingClassroom.isPresent()) {
             Classroom classroom = existingClassroom.get();
             classroom.setNameOfClass(updatedClassroom.getNameOfClass());
-
+            classroom.setGrade(updatedClassroom.getGrade());
             // Handle updating the Grade if necessary (similar to saveClassroom logic)
 
             return classroomRepository.save(classroom);
