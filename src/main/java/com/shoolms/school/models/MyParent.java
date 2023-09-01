@@ -1,9 +1,13 @@
 package com.shoolms.school.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -50,5 +54,9 @@ public class MyParent {
     @JoinColumn(name = "religion_mother_id")
     private Religion religionMother;
     private String addressMother;
+
+    @OneToMany(mappedBy = "myParent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<FilesParent> files = new ArrayList<>();
 
 }

@@ -1,11 +1,14 @@
 package com.shoolms.school.controllers;
 
 import com.shoolms.school.models.MyParent;
+import com.shoolms.school.service.FileStorageService;
 import com.shoolms.school.service.MyParentService;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +18,11 @@ import java.util.Optional;
 public class MyParentController {
 
     private final MyParentService myParentService;
-
+    private final FileStorageService fileStorageService;
     @Autowired
-    public MyParentController(MyParentService myParentService) {
+    public MyParentController(MyParentService myParentService, FileStorageService fileStorageService) {
         this.myParentService = myParentService;
+        this.fileStorageService = fileStorageService;
     }
 
     @GetMapping("/api/parents")
@@ -54,6 +58,19 @@ public class MyParentController {
     public ResponseEntity<Void> deleteParent(@PathVariable Long id) {
         myParentService.deleteParent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PostMapping("/api/parents/{parentId}/upload")
+    public ResponseEntity<String> uploadFiles(
+            @PathVariable Long parentId,
+            @RequestParam("files") List<MultipartFile> files) {
+        try {
+            for (MultipartFile file : files) {
+                fileStorageService.storeFile(parentId, file);
+            }
+            return new ResponseEntity<>("Files uploaded successfully.", HttpStatus.CREATED);
+        } catch (FileUploadException ex) {
+            return new ResponseEntity<>("Failed to upload files: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
