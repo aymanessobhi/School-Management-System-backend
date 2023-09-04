@@ -9,16 +9,16 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name="gender")
-public class Gender{
+@NoArgsConstructor
+@Table(name = "specialization")
+public class Specialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-    private String nameGender;
-    @OneToMany(mappedBy = "gender")
-    private List<Teacher> teachers;
 
+    private String name;
+
+    @OneToMany(mappedBy = "specialization") // Use "specialization" here, which matches the field name in Teacher
+    private List<Teacher> teachers;
 }

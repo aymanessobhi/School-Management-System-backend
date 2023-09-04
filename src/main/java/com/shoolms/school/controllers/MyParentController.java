@@ -72,5 +72,11 @@ public class MyParentController {
             return new ResponseEntity<>("Failed to upload files: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/api/parents/{parentId}/files")
+    public ResponseEntity<List<String>> getParentFiles(@PathVariable Long parentId) {
+        List<String> files = fileStorageService.getFilesByParentId(parentId);
+        return new ResponseEntity<>(files, HttpStatus.OK);
+    }
+
 
 }

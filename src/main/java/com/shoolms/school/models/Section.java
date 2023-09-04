@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,5 +34,6 @@ public class Section {
 
 //    @ManyToMany(mappedBy = "sections")
 //    private List<Teacher> teachers;
-
+    @ManyToMany(mappedBy = "sections")
+    private List<Teacher> teachers;
 }

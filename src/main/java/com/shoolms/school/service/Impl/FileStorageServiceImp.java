@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FileStorageServiceImp implements FileStorageService {
@@ -55,6 +57,15 @@ public class FileStorageServiceImp implements FileStorageService {
         return fileRepository.findById(fileId)
                 .orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
 
+    }
+
+    @Override
+    public List<String> getFilesByParentId(Long parentId) {
+        List<FilesParent> filesParents = fileRepository.findByMyParentId(parentId);
+        // Extract and return the file names from the FilesParent entities
+        return filesParents.stream()
+                .map(FilesParent::getFileName)
+                .collect(Collectors.toList());
     }
 
 }
