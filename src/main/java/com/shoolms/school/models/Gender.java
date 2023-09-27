@@ -18,7 +18,6 @@ public class Gender{
 
     private Long id;
     private String nameGender;
-    @OneToMany(mappedBy = "gender")
-    private List<Teacher> teachers;
+
 
 }

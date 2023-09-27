@@ -1,8 +1,11 @@
 package com.shoolms.school.service.Impl;
 
 import com.shoolms.school.models.Section;
+import com.shoolms.school.models.Teacher;
 import com.shoolms.school.repository.SectionRepository;
+import com.shoolms.school.repository.TeacherRepository;
 import com.shoolms.school.service.SectionService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +19,12 @@ import java.util.Optional;
 public class SectionServiceImpl implements SectionService {
 
     private final SectionRepository sectionRepository;
+    private final TeacherRepository teacherRepository;
 
     @Autowired
-    public SectionServiceImpl(SectionRepository sectionRepository) {
+    public SectionServiceImpl(SectionRepository sectionRepository, TeacherRepository teacherRepository) {
         this.sectionRepository = sectionRepository;
+        this.teacherRepository = teacherRepository;
     }
 
     @Override
@@ -62,5 +67,19 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public void deleteSection(Long id) {
         sectionRepository.deleteById(id);
+    }
+    @Override
+    public void addTeachersToSection(Long sectionId, List<Long> teacherIds) {
+         Section section = sectionRepository.findById(sectionId).orElseThrow(() -> new EntityNotFoundException("Section not found"));
+         List<Teacher> teachers = teacherRepository.findAllById(teacherIds);
+         section.getTeachers().addAll(teachers);
+         sectionRepository.save(section);
+    }
+    @Override
+    public void removeTeachersFromSection(Long sectionId, List<Long> teacherIds) {
+         Section section = sectionRepository.findById(sectionId).orElseThrow(() -> new EntityNotFoundException("Section not found"));
+         List<Teacher> teachers = teacherRepository.findAllById(teacherIds);
+         section.getTeachers().removeAll(teachers);
+         sectionRepository.save(section);
     }
 }

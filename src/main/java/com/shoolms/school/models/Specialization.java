@@ -19,6 +19,4 @@ public class Specialization {
 
     private String name;
 
-    @OneToMany(mappedBy = "specialization") // Use "specialization" here, which matches the field name in Teacher
-    private List<Teacher> teachers;
 }

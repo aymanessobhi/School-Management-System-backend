@@ -1,11 +1,7 @@
 package com.shoolms.school;
 
-import com.shoolms.school.models.Nationalitie;
-import com.shoolms.school.models.Religion;
-import com.shoolms.school.models.Type_Blood;
-import com.shoolms.school.service.NationalitieService;
-import com.shoolms.school.service.ReligionService;
-import com.shoolms.school.service.TypeBloodService;
+import com.shoolms.school.models.*;
+import com.shoolms.school.service.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,9 +15,30 @@ public class SchoolApplication {
        insertNationalities(context.getBean(NationalitieService.class));
        insertTypeBlood(context.getBean(TypeBloodService.class));
        insertReligion(context.getBean(ReligionService.class));
+       insertSpecializations(context.getBean(SpecializationService.class));
+       insertGenders(context.getBean(GenderService.class));
 
     }
-
+    public static void insertSpecializations(SpecializationService specializationService) {
+        Specialization[] specializations = {
+                new Specialization(1L, "Mathematics"),
+                new Specialization(2L, "Science"),
+                new Specialization(3L, "History"),
+                new Specialization(4L, "Literature"),
+        };
+        for (Specialization specialization : specializations) {
+            specializationService.createSpecialization(specialization);
+        }
+    }
+    public static void insertGenders(GenderService genderService) {
+        Gender[] genders = {
+                new Gender(1L, "Male"),
+                new Gender(2L, "Female"),
+        };
+        for (Gender gender : genders) {
+            genderService.saveGender(gender);
+        }
+    }
     private static void insertTypeBlood(TypeBloodService typeBloodService) {
         Type_Blood[] bloodTypes = {
                 new Type_Blood(1L, "Type A+"),

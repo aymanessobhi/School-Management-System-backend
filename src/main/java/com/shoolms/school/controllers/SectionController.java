@@ -3,6 +3,7 @@ package com.shoolms.school.controllers;
 import com.shoolms.school.models.Section;
 import com.shoolms.school.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,4 +55,16 @@ public class SectionController {
         sectionService.deleteSection(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{sectionId}/add-teachers")
+    public ResponseEntity<?> addTeachersToSection(@PathVariable Long sectionId, @RequestBody List<Long> teacherIds) {
+         sectionService.addTeachersToSection(sectionId, teacherIds);
+         return ResponseEntity.ok().build();
+    }
+    @PostMapping("/{sectionId}/remove-teachers")
+    public ResponseEntity<?> removeTeachersFromSection(@PathVariable Long sectionId, @RequestBody List<Long> teacherIds) {
+         sectionService.removeTeachersFromSection(sectionId, teacherIds);
+         return ResponseEntity.ok().build();
+    }
+
 }

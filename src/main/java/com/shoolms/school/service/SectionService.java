@@ -12,4 +12,6 @@ public interface SectionService {
     Section updateSection(Long id, Section updatedSection);
     List<Section> findByGrade(Long gradeId);
     void deleteSection(Long id);
+    void addTeachersToSection(Long sectionId, List<Long> teacherIds);
+    void removeTeachersFromSection(Long sectionId, List<Long> teacherIds);
 }
